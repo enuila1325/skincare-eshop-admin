@@ -1,46 +1,74 @@
-const BASE_URL_PRODUCTS = "https://skincare-minimalistic-backend.onrender.com/api/products";
-const BASE_URL_ORDERS = "https://skincare-minimalistic-backend.onrender.com/api/orders";
+const BASE_URL = "https://skincare-minimalistic-backend.onrender.com/api";
 
-export const getOrders = async () => {
-  const res = await fetch(BASE_URL_ORDERS);
-  return res.json();
-};
+export const api = {
+  // Categories
+  getCategories: () => fetch(`${BASE_URL}/categories`).then(r => r.json()),
+  createCategory: (data) =>
+    fetch(`${BASE_URL}/categories`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    }),
+  updateCategory: (id, data) =>
+    fetch(`${BASE_URL}/categories/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    }),
 
-export const updateOrderStatus = async (id, status) => {
-  const res = await fetch(`${BASE_URL_ORDERS}/${id}/status`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ status }),
-  });
+  deleteCategory: (id) =>
+    fetch(`${BASE_URL}/categories/${id}`, { method: "DELETE" }),
 
-  return res.json();
-};
+  // Subcategories
+  getSubCategories: () => fetch(`${BASE_URL}/subcategories`).then(r => r.json()),
 
-export const getProducts = async () => {
-  const res = await fetch(BASE_URL_PRODUCTS);
-  return res.json();
-};
+  createSubCategory: (data) =>
+    fetch(`${BASE_URL}/subcategories`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    }),
+    
+  updateSubCategory: (id, data) =>
+    fetch(`${BASE_URL}/subcategories/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    }),
 
-export const createProduct = async (data) => {
-  const res = await fetch(BASE_URL_PRODUCTS, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  });
-  return res.json();
-};
+  deleteSubCategory: (id) =>
+    fetch(`${BASE_URL}/subcategories/${id}`, { method: "DELETE" }),
 
-export const updateProduct = async (id, data) => {
-  const res = await fetch(`${BASE_URL_PRODUCTS}/${id}`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  });
-  return res.json();
-};
+  // Products
+  getProducts: () => fetch(`${BASE_URL}/products`).then(r => r.json()),
 
-export const deleteProduct = async (id) => {
-  await fetch(`${BASE_URL_PRODUCTS}/${id}`, {
-    method: "DELETE",
-  });
+  createProduct: (data) =>
+    console.log("Creando producto con datos:", JSON.stringify(data)) ||
+    fetch(`${BASE_URL}/products`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    }),
+
+  updateProduct: (id, data) =>
+    fetch(`${BASE_URL}/products/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    }),
+
+  deleteProduct: (id) =>
+    fetch(`${BASE_URL}/products/${id}`, {
+      method: "DELETE"
+    }),
+
+  getOrders:
+    () => fetch(`${BASE_URL}/orders`).then(r => r.json()),
+
+  updateOrderStatus: (id, status) =>
+    fetch(`${BASE_URL}/orders/${id}/status`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ status }),
+    }),
 };

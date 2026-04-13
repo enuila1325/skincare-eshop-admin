@@ -39,7 +39,13 @@ export default function Sidebar({ drawerWidth }) {
         <ListItemButton onClick={() => navigate("/products")}>
           <ListItemText primary="Productos" />
         </ListItemButton>
+        <ListItemButton onClick={() => navigate("/categories")}>
+          <ListItemText primary="Categorías" />
+        </ListItemButton>
 
+        <ListItemButton onClick={() => navigate("/subcategories")}>
+          <ListItemText primary="Subcategorías" />
+        </ListItemButton>
         <ListItemButton onClick={() => navigate("/orders")}>
           <ListItemText primary="Pedidos" />
         </ListItemButton>

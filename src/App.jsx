@@ -4,6 +4,8 @@ import Sidebar from "./components/Sidebar";
 import Dashboard from "./pages/Dashboard";
 import Products from "./pages/Products";
 import Orders from "./pages/Orders";
+import Categories from "./pages/Categories";
+import SubCategories from "./pages/SubCategories";
 
 const drawerWidth = 240;
 
@@ -27,6 +29,8 @@ export default function App() {
             <Route path="/" element={<Dashboard />} />
             <Route path="/products" element={<Products />} />
             <Route path="/orders" element={<Orders />} />
+            <Route path="/categories" element={<Categories />} />
+            <Route path="/subcategories" element={<SubCategories />} />
           </Routes>
         </Box>
       </Box>
